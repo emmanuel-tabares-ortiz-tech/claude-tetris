@@ -1,0 +1,72 @@
+name: Issue Formatter
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  format-issue:
+    # Skip if already labeled 'formatted' to prevent infinite re-formatting loops.
+    # Also skip if the issue was edited by the bot itself.
+    if: |
+      !contains(github.event.issue.labels.*.name, 'formatted') &&
+      github.event.issue.user.login != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Format issue with Claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          allowed_tools: "Bash(gh issue:*),Bash(gh label:*)"
+          prompt: |
+            You are a helpful assistant that improves the readability of GitHub issues
+            for a vanilla JavaScript Tetris project. Your task is to reformat the
+            following issue to make it clearer and more useful for multiple collaborators.
+
+            Issue Number: ${{ github.event.issue.number }}
+            Issue Title: ${{ github.event.issue.title }}
+            Author: ${{ github.event.issue.user.login }}
+            Repository: ${{ github.repository }}
+
+            Current Issue Body:
+            ```
+            ${{ github.event.issue.body }}
+            ```
+
+            Instructions:
+            1. First, check if the body already has a clear structure with at least 3
+               explicit section headings (lines starting with ## or **bold labels**).
+               If yes, stop here — do not edit the issue.
+
+            2. If the body needs reformatting, rewrite it using ONLY the relevant sections
+               from this list (omit sections with no content):
+               - ## Summary
+               - ## Steps to Reproduce (only for bugs — use a numbered list)
+               - ## Expected Behavior (only for bugs)
+               - ## Actual Behavior (only for bugs)
+               - ## Additional Context
+
+               Preserve the author's original meaning and wording as much as possible.
+               Do not add information that was not in the original body.
+               Do not remove information from the original body.
+
+            3. If you reformatted the body, run these gh commands in order:
+               a. Create the label if it does not exist yet (--force makes this idempotent):
+                  gh label create "formatted" --repo ${{ github.repository }} --color "0075ca" --description "Issue body has been auto-formatted for readability" --force
+               b. Update the issue body with the reformatted content:
+                  gh issue edit ${{ github.event.issue.number }} --repo ${{ github.repository }} --body "REFORMATTED_BODY_HERE"
+               c. Add the label to prevent re-processing:
+                  gh issue edit ${{ github.event.issue.number }} --repo ${{ github.repository }} --add-label "formatted"
+
+            Only run these commands if you actually reformatted the issue.
+            Do not edit the issue if it was already well-structured.
