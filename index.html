@@ -35,6 +35,16 @@
           <canvas id="next-canvas" width="120" height="120"></canvas>
         </div>
 
+        <div class="panel-section">
+          <span class="label">SKIN</span>
+          <select id="skin-selector">
+            <option value="retro">Retro</option>
+            <option value="neon">Neon</option>
+            <option value="pastel">Pastel</option>
+            <option value="pixel">Pixel Art</option>
+          </select>
+        </div>
+
         <div class="panel-section controls">
           <span class="label">CONTROLS</span>
           <ul>
@@ -75,6 +85,13 @@
           <p id="overlay-title">GAME OVER</p>
           <p id="overlay-score"></p>
           <button id="restart-btn">Reiniciar</button>
+          <div id="scores-section">
+            <input id="player-name-input" type="text" maxlength="12" placeholder="Tu nombre…" />
+            <button id="save-score-btn">GUARDAR</button>
+            <div id="new-record-badge" class="hidden">★ NUEVO RÉCORD</div>
+            <table id="scores-table"></table>
+            <button id="reset-scores-btn">Borrar récords</button>
+          </div>
         </div>
       </div>
     </div>

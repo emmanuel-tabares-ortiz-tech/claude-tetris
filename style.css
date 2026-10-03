@@ -168,6 +168,10 @@ kbd {
   flex-direction: column;
   gap: 12px;
   align-items: center;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 16px 12px;
+  width: 260px;
 }
 
 #overlay-title {
@@ -312,6 +316,132 @@ kbd {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+/* ---- High Scores ---- */
+#scores-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+#scores-section.hidden {
+  display: none;
+}
+
+#player-name-input {
+  background: var(--canvas-bg);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  padding: 6px 10px;
+  width: 160px;
+  outline: none;
+  transition: box-shadow 0.15s;
+}
+
+#player-name-input:focus {
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+#save-score-btn {
+  background: var(--accent);
+  color: var(--on-accent);
+  border: none;
+  border-radius: 6px;
+  padding: 7px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background 0.15s;
+}
+
+#save-score-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+#save-score-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+#new-record-badge {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+#new-record-badge.hidden {
+  display: none;
+}
+
+#scores-table {
+  border-collapse: collapse;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  width: 100%;
+}
+
+#scores-table th {
+  color: var(--label);
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 4px 6px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+#scores-table td {
+  padding: 4px 6px;
+  color: var(--text);
+}
+
+.scores-empty {
+  color: var(--muted);
+  padding: 8px 0;
+}
+
+.new-record-highlight td {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+#reset-scores-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 4px 10px;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+#reset-scores-btn:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+/* ---- Selector de skin ---- */
+#skin-selector {
+  background: var(--canvas-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  width: 100%;
+}
+
+#skin-selector:focus {
+  outline: 1px solid var(--accent);
 }
 
 /* ---- Botón de tema ---- */
