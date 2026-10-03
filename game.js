@@ -531,7 +531,7 @@ function setSkin(name) {
   document.querySelectorAll('.skin-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.skin === name);
   });
-  if (paused || gameOver) draw();
+  if ((paused || gameOver) && current) draw();
 }
 
 document.querySelectorAll('.skin-btn').forEach(btn => {
