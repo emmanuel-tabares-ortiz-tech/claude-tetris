@@ -35,6 +35,16 @@
           <canvas id="next-canvas" width="120" height="120"></canvas>
         </div>
 
+        <div class="panel-section">
+          <span class="label">SKIN</span>
+          <div class="skin-picker">
+            <button class="skin-btn" data-skin="retro" title="Retro">Retro</button>
+            <button class="skin-btn" data-skin="neon" title="Neon">Neon</button>
+            <button class="skin-btn" data-skin="pastel" title="Pastel">Pastel</button>
+            <button class="skin-btn" data-skin="pixel" title="Pixel Art">Pixel</button>
+          </div>
+        </div>
+
         <div class="panel-section controls">
           <span class="label">CONTROLS</span>
           <ul>
@@ -52,7 +62,53 @@
       <div class="overlay-box">
         <p id="overlay-title">GAME OVER</p>
         <p id="overlay-score"></p>
+        <p id="overlay-stats" class="hidden"></p>
+
+        <div id="name-entry" class="hidden">
+          <p class="name-prompt">¡Nueva marca! Escribe tu nombre:</p>
+          <div class="name-input-row">
+            <input type="text" id="player-name" maxlength="10" placeholder="Jugador"
+                   autocomplete="off" spellcheck="false" />
+            <button id="save-score-btn">Guardar</button>
+          </div>
+        </div>
+
+        <div id="scores-section" class="hidden">
+          <p class="label">RECORDS</p>
+          <table id="scores-table">
+            <thead>
+              <tr><th>#</th><th>Nombre</th><th>Score</th><th>Combo</th><th>Líneas</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <button id="reset-scores-btn">Borrar récords</button>
+        </div>
+
         <button id="restart-btn">Reiniciar</button>
+      </div>
+    </div>
+
+    <div id="pause-overlay" class="overlay hidden">
+      <div class="pause-box">
+        <p class="pause-title">PAUSA</p>
+        <div class="pause-menu">
+          <button id="resume-btn" class="menu-btn">Reanudar</button>
+          <button id="pause-restart-btn" class="menu-btn">Reiniciar</button>
+          <button id="controls-toggle-btn" class="menu-btn menu-btn--secondary">Ver controles</button>
+          <div id="pause-controls" class="pause-controls hidden">
+            <ul>
+              <li><kbd>←</kbd><kbd>→</kbd> mover</li>
+              <li><kbd>↑</kbd> / <kbd>X</kbd> rotar</li>
+              <li><kbd>↓</kbd> bajar suave</li>
+              <li><kbd>Space</kbd> caída rápida</li>
+              <li><kbd>P</kbd> / <kbd>Esc</kbd> pausa</li>
+            </ul>
+          </div>
+          <div class="level-row">
+            <label for="start-level">Nivel inicial</label>
+            <select id="start-level"></select>
+          </div>
+        </div>
       </div>
     </div>
   </div>

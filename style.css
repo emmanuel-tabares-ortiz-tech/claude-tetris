@@ -168,6 +168,9 @@ kbd {
   flex-direction: column;
   gap: 12px;
   align-items: center;
+  width: min(340px, 90%);
+  max-height: 90%;
+  overflow-y: auto;
 }
 
 #overlay-title {
@@ -201,6 +204,276 @@ kbd {
   background: var(--accent-hover);
 }
 
+/* ---- Stats line (combo + líneas) ---- */
+#overlay-stats {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+#overlay-stats.hidden { display: none; }
+
+/* ---- Entrada de nombre ---- */
+#name-entry {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 0 4px;
+}
+
+#name-entry.hidden { display: none; }
+
+.name-prompt {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.name-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+#player-name {
+  flex: 1;
+  background: var(--canvas-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  font-family: 'Courier New', Courier, monospace;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+#player-name:focus {
+  border-color: var(--accent);
+}
+
+#save-score-btn {
+  background: var(--accent);
+  color: var(--on-accent);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.15s;
+}
+
+#save-score-btn:hover {
+  background: var(--accent-hover);
+}
+
+/* ---- Sección de récords ---- */
+#scores-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 0 4px;
+}
+
+#scores-section.hidden { display: none; }
+
+#scores-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+#scores-table th {
+  color: var(--label);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+#scores-table th:not(:first-child),
+#scores-table td:not(:first-child) {
+  text-align: right;
+}
+
+#scores-table td {
+  padding: 5px 6px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#scores-table tr:last-child td {
+  border-bottom: none;
+}
+
+#scores-table .rank {
+  color: var(--label);
+}
+
+#scores-table .entry-name {
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+}
+
+#scores-table .entry-score {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.new-record td {
+  background: var(--accent-glow);
+}
+
+.new-record .entry-score,
+.new-record .entry-name,
+.new-record .entry-combo,
+.new-record .entry-lines,
+.new-record .rank {
+  color: var(--accent);
+}
+
+.no-records {
+  text-align: center;
+  color: var(--label);
+  padding: 12px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-style: italic;
+}
+
+#reset-scores-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 11px;
+  color: var(--muted);
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  align-self: flex-end;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+#reset-scores-btn:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+/* ---- Menú de pausa ---- */
+.pause-box {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  min-width: 220px;
+}
+
+.pause-title {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--accent);
+}
+
+.pause-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.menu-btn {
+  width: 100%;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: var(--on-accent);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background 0.15s;
+}
+
+.menu-btn:hover {
+  background: var(--accent-hover);
+}
+
+.menu-btn--secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.menu-btn--secondary:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.pause-controls {
+  background: var(--canvas-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.pause-controls ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pause-controls li {
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.level-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--canvas-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.level-row label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--label);
+}
+
+#start-level {
+  background: var(--kbd-bg);
+  color: var(--text);
+  border: 1px solid var(--kbd-border);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#start-level:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
 /* ---- Botón de tema ---- */
 #theme-toggle {
   position: fixed;
@@ -219,4 +492,35 @@ kbd {
 
 #theme-toggle:hover {
   border-color: var(--accent);
+}
+
+/* ---- Selector de skin ---- */
+.skin-picker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.skin-btn {
+  background: var(--kbd-bg);
+  border: 1px solid var(--kbd-border);
+  border-radius: 4px;
+  padding: 4px 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.12s, color 0.12s;
+}
+
+.skin-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.skin-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--canvas-bg);
 }
