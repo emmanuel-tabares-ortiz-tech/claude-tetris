@@ -201,6 +201,23 @@ kbd {
   background: var(--accent-hover);
 }
 
+/* ---- Selector de skin ---- */
+#skin-selector {
+  background: var(--canvas-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  width: 100%;
+}
+
+#skin-selector:focus {
+  outline: 1px solid var(--accent);
+}
+
 /* ---- Botón de tema ---- */
 #theme-toggle {
   position: fixed;
