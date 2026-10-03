@@ -23,7 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          claude_args: "--allowedTools Bash(gh issue *)"
+          claude_args: "--allowedTools Bash(gh*)"
           prompt: |
             You are a GitHub issue formatter for a Tetris game project (vanilla JS/HTML/CSS, no dependencies).
 
