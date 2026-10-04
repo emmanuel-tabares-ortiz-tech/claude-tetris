@@ -37,12 +37,12 @@
 
         <div class="panel-section">
           <span class="label">SKIN</span>
-          <select id="skin-selector">
-            <option value="retro">Retro</option>
-            <option value="neon">Neon</option>
-            <option value="pastel">Pastel</option>
-            <option value="pixel">Pixel Art</option>
-          </select>
+          <div class="skin-picker">
+            <button class="skin-btn" data-skin="retro" title="Retro">Retro</button>
+            <button class="skin-btn" data-skin="neon" title="Neon">Neon</button>
+            <button class="skin-btn" data-skin="pastel" title="Pastel">Pastel</button>
+            <button class="skin-btn" data-skin="pixel" title="Pixel Art">Pixel</button>
+          </div>
         </div>
 
         <div class="panel-section controls">
@@ -60,37 +60,53 @@
 
     <div id="overlay" class="overlay hidden">
       <div class="overlay-box">
-        <!-- Pause menu -->
-        <div id="pause-menu" class="hidden">
-          <p class="overlay-title-pause">PAUSA</p>
-          <button id="resume-btn" class="pause-menu-btn">Reanudar</button>
-          <button id="pause-restart-btn" class="pause-menu-btn">Reiniciar</button>
-          <button id="controls-toggle-btn" class="pause-menu-btn secondary">Ver controles</button>
-          <div id="controls-sub-panel" class="controls-sub-panel hidden">
+        <p id="overlay-title">GAME OVER</p>
+        <p id="overlay-score"></p>
+        <p id="overlay-stats" class="hidden"></p>
+
+        <div id="name-entry" class="hidden">
+          <p class="name-prompt">¡Nueva marca! Escribe tu nombre:</p>
+          <div class="name-input-row">
+            <input type="text" id="player-name" maxlength="10" placeholder="Jugador"
+                   autocomplete="off" spellcheck="false" />
+            <button id="save-score-btn">Guardar</button>
+          </div>
+        </div>
+
+        <div id="scores-section" class="hidden">
+          <p class="label">RECORDS</p>
+          <table id="scores-table">
+            <thead>
+              <tr><th>#</th><th>Nombre</th><th>Score</th><th>Combo</th><th>Líneas</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <button id="reset-scores-btn">Borrar récords</button>
+        </div>
+
+        <button id="restart-btn">Reiniciar</button>
+      </div>
+    </div>
+
+    <div id="pause-overlay" class="overlay hidden">
+      <div class="pause-box">
+        <p class="pause-title">PAUSA</p>
+        <div class="pause-menu">
+          <button id="resume-btn" class="menu-btn">Reanudar</button>
+          <button id="pause-restart-btn" class="menu-btn">Reiniciar</button>
+          <button id="controls-toggle-btn" class="menu-btn menu-btn--secondary">Ver controles</button>
+          <div id="pause-controls" class="pause-controls hidden">
             <ul>
               <li><kbd>←</kbd><kbd>→</kbd> mover</li>
-              <li><kbd>↑</kbd> rotar</li>
-              <li><kbd>↓</kbd> bajar</li>
-              <li><kbd>Space</kbd> caída</li>
+              <li><kbd>↑</kbd> / <kbd>X</kbd> rotar</li>
+              <li><kbd>↓</kbd> bajar suave</li>
+              <li><kbd>Space</kbd> caída rápida</li>
               <li><kbd>P</kbd> / <kbd>Esc</kbd> pausa</li>
             </ul>
           </div>
-          <div class="level-selector-row">
-            <label for="start-level-input">Nivel inicial:</label>
-            <input id="start-level-input" class="level-selector" type="number" min="1" max="15" value="1" />
-          </div>
-        </div>
-        <!-- Game-over content -->
-        <div id="gameover-content">
-          <p id="overlay-title">GAME OVER</p>
-          <p id="overlay-score"></p>
-          <button id="restart-btn">Reiniciar</button>
-          <div id="scores-section">
-            <input id="player-name-input" type="text" maxlength="12" placeholder="Tu nombre…" />
-            <button id="save-score-btn">GUARDAR</button>
-            <div id="new-record-badge" class="hidden">★ NUEVO RÉCORD</div>
-            <table id="scores-table"></table>
-            <button id="reset-scores-btn">Borrar récords</button>
+          <div class="level-row">
+            <label for="start-level">Nivel inicial</label>
+            <select id="start-level"></select>
           </div>
         </div>
       </div>
